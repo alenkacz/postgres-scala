@@ -1,2 +1,2 @@
-# postgresql-async-factory
-Easier creation of PostgreSQL async connection from typesafe config
+# postgresql-async-aquared
+Making the life with postgresql-async easier
