@@ -1,2 +1,2 @@
-# postgresql-async-aquared
-Making the life with postgresql-async easier
+# postgres-scala
+Asynchronous postgres client for Scala
