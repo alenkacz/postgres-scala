@@ -2,7 +2,7 @@
 FROM java:8u111-jdk-alpine
 MAINTAINER varkockova.a@gmail.com
 
-# to avoid libnative-platform.so missing bug in gradle
+# to avoid libnative-platform.so missing because of gradle
 RUN apk add --update \
                libstdc++ \
  && rm /var/cache/apk/*
