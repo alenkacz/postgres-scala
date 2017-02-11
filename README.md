@@ -1,4 +1,7 @@
 # postgres-scala
+
+[![Build Status](https://travis-ci.org/alenkacz/postgres-scala.svg)](https://travis-ci.org/alenkacz/postgres-scala)
+
 Asynchronous postgres client for Scala. It does not reimplement the wheel because currently it uses [postgresql-async](https://github.com/mauricio/postgresql-async) under the hood. So it is just a nicer API for this library.
 
 ## Motivation
