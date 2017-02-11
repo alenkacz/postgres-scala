@@ -14,9 +14,11 @@ object Example {
     connection.sendPreparedStatement("SELECT 0", row => DomainObject(row(0).string(), row(1).int()))
     connection.sendPreparedStatementForValue[Long]("SELECT 0")
 
-    val testValue = List("a", "b")
-    sql"SELECT * FROM table WHERE a IN ($testValue)".query(row => DomainObject(row(0).string(), row(1).int()))
-    sql"SELECT id FROM table WHERE a IN ($testValue)".queryValue[Int]()
+    val testListValue = List("a", "b")
+    sql"SELECT * FROM table WHERE a IN ($testListValue)".query(row => DomainObject(row(0).string(), row(1).int()))
+    sql"SELECT id FROM table WHERE a IN ($testListValue)".queryValue[Int]()
+    val testValue = 1
+    sql"SELECT * FROM table WHERE b=$testValue".query(row => DomainObject(row("a").string(), row("b").int()))
   }
 }
 
