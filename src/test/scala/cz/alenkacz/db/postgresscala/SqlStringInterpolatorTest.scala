@@ -3,7 +3,7 @@ package cz.alenkacz.db.postgresscala
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 import org.scalatest.{FlatSpec, Matchers}
-import cz.alenkacz.db.postgresscala.Implicits._
+import cz.alenkacz.db.postgresscala._
 
 @RunWith(classOf[JUnitRunner])
 class SqlStringInterpolatorTest extends FlatSpec with Matchers  {

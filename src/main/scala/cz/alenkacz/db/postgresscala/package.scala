@@ -1,6 +1,6 @@
-package cz.alenkacz.db.postgresscala
+package cz.alenkacz.db
 
-object Implicits {
+package object postgresscala {
   private object EmptyParameterPlaceholder
 
   implicit class SqlStringInterpolator(val s: StringContext) extends AnyVal {

@@ -1,6 +1,6 @@
 package cz.alenkacz.db.postgresscala
 
-import cz.alenkacz.db.postgresscala.Implicits._
+import cz.alenkacz.db.postgresscala._
 
 object Example {
   def main(agrs: Array[String]): Unit = {
