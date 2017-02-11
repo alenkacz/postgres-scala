@@ -1,8 +1,7 @@
 package cz.alenkacz.db.postgresscala
-import scala.concurrent.Future
-import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.{ExecutionContext, Future}
 
-class PostgresAsyncConnection(underlyingConnection: com.github.mauricio.async.db.Connection) extends Connection {
+class PostgresAsyncConnection(underlyingConnection: com.github.mauricio.async.db.Connection)(implicit val executionContext: ExecutionContext) extends Connection {
   override def query[T](query: String, deserializer: (Row) => T): Future[Seq[T]] = underlyingConnection.sendQuery(query).map(qr => qr.rows match {
     case Some(resultSet) => resultSet.map(new PostgresAsyncRow(_)).map(deserializer)
     case None => Seq.empty

@@ -6,9 +6,11 @@ import com.github.mauricio.async.db.postgresql.pool.PostgreSQLConnectionFactory
 import com.typesafe.config.{Config, ConfigFactory}
 import cz.alenkacz.db.postgresscala.ConfigParser.PostgresConfiguration
 
+import scala.concurrent.ExecutionContext
+
 object PostgresConnection {
   private val defaultConfig = ConfigFactory.defaultReference().getConfig("postgres-connection-defaults")
-  def fromConfig(config: Config): Connection = {
+  def fromConfig(config: Config)(implicit executionContext: ExecutionContext): Connection = {
     val finalConfig = config.withFallback(defaultConfig)
 
     val parsedConfig = ConfigParser.parse(finalConfig)

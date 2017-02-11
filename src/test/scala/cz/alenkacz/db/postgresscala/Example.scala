@@ -1,10 +1,13 @@
 package cz.alenkacz.db.postgresscala
 
+import com.typesafe.config.ConfigFactory
 import cz.alenkacz.db.postgresscala._
+
+import scala.concurrent.ExecutionContext.Implicits.global
 
 object Example {
   def main(agrs: Array[String]): Unit = {
-    implicit val connection: Connection = ???
+    implicit val connection: Connection = PostgresConnection.fromConfig(ConfigFactory.load())
 
     connection.query("SELECT 0", row => DomainObject(row(0).string(), row(1).int()))
     connection.queryValue[Long]("SELECT 0")
