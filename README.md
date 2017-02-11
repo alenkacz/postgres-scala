@@ -5,7 +5,7 @@ Asynchronous postgres client for Scala. It does not reimplement the wheel becaus
 There are several very good postgresql clients for Scala but in my opinion there is still room for another one for these reasons:
 - [scalike](https://github.com/scalikejdbc/scalikejdbc) (asynchronous implementation is not in production-ready state)
 - [postgresql-async](https://github.com/mauricio/postgresql-async) (the API is too low-level)
-- [slick](https://github.com/slick/slick) (too heavy)
+- [slick](https://github.com/slick/slick) (too heavy for plain SQL usage)
 
 Sometimes your just want to write plain SQL queries (e.g. for performance reasons) and map them to domain objects by hand. This library enable that with a nice scala API.
 
