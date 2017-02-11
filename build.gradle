@@ -7,11 +7,16 @@ buildscript {
     }
 }
 
+plugins {
+    id 'net.researchgate.release' version '2.4.0'
+}
+
 group 'cz.alenkacz.db'
 version = version == 'unspecified' ? 'DEVELOPER-SNAPSHOT' : version
 
 apply plugin: 'java'
 apply plugin: 'scala'
+apply plugin: 'maven'
 apply plugin: 'com.jfrog.bintray'
 
 sourceCompatibility = 1.8
@@ -46,16 +51,6 @@ task sourcesJar(type: Jar) {
 artifacts {
     archives sourcesJar
 }
-
-task sourcesJar(type: Jar) {
-    from sourceSets.main.allSource
-    classifier = 'sources'
-}
-
-artifacts {
-    archives sourcesJar
-}
-
 
 bintray {
     user = System.getenv('BINTRAY_USER')
