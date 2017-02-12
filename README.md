@@ -1,6 +1,6 @@
 # postgres-scala
 
-[![Build Status](https://travis-ci.org/alenkacz/postgres-scala.svg)](https://travis-ci.org/alenkacz/postgres-scala)
+[![Build Status](https://travis-ci.org/alenkacz/postgres-scala.svg)](https://travis-ci.org/alenkacz/postgres-scala) [ ![Download](https://api.bintray.com/packages/alenkacz/maven/postgres-scala/images/download.svg) ](https://bintray.com/alenkacz/maven/postgres-scala/_latestVersion)
 
 Asynchronous postgres client for Scala. It does not reimplement the wheel because currently it uses [postgresql-async](https://github.com/mauricio/postgresql-async) under the hood. So it is just a nicer API for this library.
 
@@ -21,15 +21,15 @@ Sometimes your just want to write plain SQL queries (e.g. for performance reason
 	import scala.concurrent.ExecutionContext.Implicits.global
 
 	object Example {
-        def main(agrs: Array[String]): Unit = {
-            implicit val connection: Connection = PostgresConnection.fromConfig(ConfigFactory.load())
-    
-            val testListValue = List("a", "b")
-                sql"SELECT * FROM table WHERE a IN ($testListValue)".query(row => DomainObject(row(0).string(), row(1).int()))
-                sql"SELECT id FROM table WHERE a IN ($testListValue)".queryValue[Int]()
-                val testValue = 1
-                sql"SELECT * FROM table WHERE b=$testValue".query(row => DomainObject(row("a").string(), row("b").int()))
-        }
+		def main(agrs: Array[String]): Unit = {
+			implicit val connection: Connection = PostgresConnection.fromConfig(ConfigFactory.load())
+
+			val testListValue = List("a", "b")
+			sql"SELECT * FROM table WHERE a IN ($testListValue)".query(row => DomainObject(row(0).string(), row(1).int()))
+			sql"SELECT id FROM table WHERE a IN ($testListValue)".queryValue[Int]()
+			val testValue = 1
+			sql"SELECT * FROM table WHERE b=$testValue".query(row => DomainObject(row("a").string(), row("b").int()))
+		}
 	}
 
     case class DomainObject(testString: String, testInt: Int)
