@@ -53,23 +53,10 @@ artifacts {
     archives sourcesJar
 }
 
-publishing {
-    publications {
-        MyPublication(MavenPublication) {
-            groupId project.group
-            artifactId 'postgres-scala_2.12'
-            version project.version
-
-            from components.java
-        }
-    }
-}
-
 bintray {
     user = System.getenv('BINTRAY_USER')
     key = System.getenv('BINTRAY_KEY')
     configurations = ['archives']
-    publications = ['MyPublication']
     publish = true
     pkg {
         repo = 'maven'
