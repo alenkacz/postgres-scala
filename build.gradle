@@ -59,7 +59,7 @@ bintray {
     publish = true
     pkg {
         repo = 'maven'
-        name = 'postgres-scala'
+        name = 'postgres-scala_2.12'
         desc = 'Asynchronous postgresql access from Scala.'
         licenses = ['MIT']
         vcsUrl = 'https://github.com/alenkacz/postgres-scala.git'
