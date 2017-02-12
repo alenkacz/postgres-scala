@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/alenkacz/postgres-scala.svg)](https://travis-ci.org/alenkacz/postgres-scala) [ ![Download](https://api.bintray.com/packages/alenkacz/maven/postgres-scala/images/download.svg) ](https://bintray.com/alenkacz/maven/postgres-scala/_latestVersion)
 
-Asynchronous postgres client for Scala. It does not reimplement the wheel because currently it uses [postgresql-async](https://github.com/mauricio/postgresql-async) under the hood. So it is just a nicer API for this library.
+Asynchronous postgres client for Scala 2.12. It does not reimplement the wheel because currently it uses [postgresql-async](https://github.com/mauricio/postgresql-async) under the hood. So it is just a nicer API for this library.
 
 ## Motivation
 There are several very good postgresql clients for Scala but in my opinion there is still room for another one for these reasons:
