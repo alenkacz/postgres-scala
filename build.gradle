@@ -17,6 +17,7 @@ version = version == 'unspecified' ? 'DEVELOPER-SNAPSHOT' : version
 apply plugin: 'java'
 apply plugin: 'scala'
 apply plugin: 'maven'
+apply plugin: "maven-publish"
 apply plugin: 'com.jfrog.bintray'
 
 sourceCompatibility = 1.8
@@ -54,7 +55,7 @@ artifacts {
 
 publishing {
     publications {
-        maven(MavenPublication) {
+        MyPublication(MavenPublication) {
             groupId project.group
             artifactId 'postgres-scala_2.12'
             version project.version
@@ -68,6 +69,7 @@ bintray {
     user = System.getenv('BINTRAY_USER')
     key = System.getenv('BINTRAY_KEY')
     configurations = ['archives']
+    publications = ['MyPublication']
     publish = true
     pkg {
         repo = 'maven'
