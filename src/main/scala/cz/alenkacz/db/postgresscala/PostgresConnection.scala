@@ -6,19 +6,19 @@ import com.github.mauricio.async.db.postgresql.pool.PostgreSQLConnectionFactory
 import com.typesafe.config.{Config, ConfigFactory}
 import cz.alenkacz.db.postgresscala.ConfigParser.PostgresConfiguration
 
-import scala.concurrent.ExecutionContext
+import scala.concurrent.{ExecutionContext, Future}
 
 object PostgresConnection {
   private val defaultConfig = ConfigFactory.defaultReference().getConfig("postgres-connection-defaults")
-  def fromConfig(config: Config)(implicit executionContext: ExecutionContext): Connection = {
+  def fromConfig(config: Config)(implicit executionContext: ExecutionContext): Future[Connection] = {
     val finalConfig = config.withFallback(defaultConfig)
 
     val parsedConfig = ConfigParser.parse(finalConfig)
     parsedConfig match {
-      case PostgresConfiguration(config, None) =>
-        new PostgresAsyncConnection(new PostgreSQLConnection(config))
-      case PostgresConfiguration(config, Some(poolConfig)) =>
-        new PostgresAsyncConnection(new ConnectionPool[PostgreSQLConnection](new PostgreSQLConnectionFactory(config), poolConfig))
+      case PostgresConfiguration(conf, None) =>
+        new PostgreSQLConnection(conf).connect.map(new PostgresAsyncConnection(_))
+      case PostgresConfiguration(conf, Some(poolConfig)) =>
+        new ConnectionPool[PostgreSQLConnection](new PostgreSQLConnectionFactory(conf), poolConfig).connect.map(new PostgresAsyncConnection(_))
     }
   }
 }

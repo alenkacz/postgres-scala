@@ -57,7 +57,7 @@ object ConfigParser {
       try {
         URLParser.parseOrDie(config.getString("connectionString"))
       } catch {
-        case e: RuntimeException => throw new InvalidConfigurationException("Incorrect format of the connection string, expected JDBC connection string", e)
+        case e: RuntimeException => throw new InvalidConfigurationException(s"Incorrect format of the connection string, expected JDBC connection string, actual: ${config.getString("connectionString")}", e)
       }
     }
   }

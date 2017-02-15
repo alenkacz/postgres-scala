@@ -6,6 +6,8 @@ import java.util.UUID
 
 import org.joda.time.{DateTime, DateTimeZone, LocalDateTime}
 
+import scala.collection.mutable.ArrayBuffer
+
 class PostgresAsyncDbValue(value: Any) extends DbValue {
   override def string: String = value.asInstanceOf[String]
 
@@ -27,7 +29,7 @@ class PostgresAsyncDbValue(value: Any) extends DbValue {
 
   override def uuid: UUID = value.asInstanceOf[UUID]
 
-  override def dateTime: Instant = value match {
+  override def instant: Instant = value match {
     case d: DateTime => Instant.ofEpochMilli(d.getMillis)
     case d: LocalDateTime => Instant.ofEpochMilli(value.asInstanceOf[LocalDateTime].toDateTime(DateTimeZone.UTC).getMillis)
     case _ => throw new IllegalArgumentException("Unsupported datetime type - expecting DateTime or LocalDatetime from joda library")
@@ -41,7 +43,7 @@ class PostgresAsyncDbValue(value: Any) extends DbValue {
 
   override def stringOpt: Option[String] = Option(string)
 
-  override def strings: Array[String] = value.asInstanceOf[Array[String]]
+  override def strings: Array[String] = value.asInstanceOf[ArrayBuffer[String]].toArray
 
   override def intOpt: Option[Int] = Option(int)
 
@@ -75,7 +77,7 @@ class PostgresAsyncDbValue(value: Any) extends DbValue {
 
   override def uuidOpt: Option[UUID] = Option(uuid)
 
-  override def dateTimeOpt: Option[Instant] = Option(dateTime)
+  override def instantOpt: Option[Instant] = Option(instant)
 
   override def timeOpt: Option[Time] = Option(time)
 }

@@ -34,8 +34,8 @@ trait DbValue {
   def inetAddressOpt: Option[InetAddress]
   def uuid: UUID
   def uuidOpt: Option[UUID]
-  def dateTime: Instant
-  def dateTimeOpt: Option[Instant]
+  def instant: Instant
+  def instantOpt: Option[Instant]
   def time: Time
   def timeOpt: Option[Time]
   def bytes: Array[Byte]
