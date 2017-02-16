@@ -37,7 +37,7 @@ class PostgresAsyncDbValue(value: Any) extends DbValue {
 
   override def time: Time = value.asInstanceOf[Time]
 
-  override def bytes: Array[Byte] = value.asInstanceOf[Array[Byte]]
+  override def bytes: Array[Byte] = value.asInstanceOf[ArrayBuffer[Byte]].toArray
 
   override def any: Any = value
 
@@ -47,31 +47,31 @@ class PostgresAsyncDbValue(value: Any) extends DbValue {
 
   override def intOpt: Option[Int] = Option(int)
 
-  override def ints: Array[Int] = value.asInstanceOf[Array[Int]]
+  override def ints: Array[Int] = value.asInstanceOf[ArrayBuffer[Int]].toArray
 
   override def bigIntOpt: Option[BigInt] = Option(bigInt)
 
-  override def bigInts: Array[BigInt] = value.asInstanceOf[Array[BigInt]]
+  override def bigInts: Array[BigInt] = value.asInstanceOf[ArrayBuffer[BigInt]].toArray
 
   override def doubleOpt: Option[Double] = Option(double)
 
-  override def doubles: Array[Double] = value.asInstanceOf[Array[Double]]
+  override def doubles: Array[Double] = value.asInstanceOf[ArrayBuffer[Double]].toArray
 
   override def floatOpt: Option[Float] = Option(float)
 
-  override def floats: Array[Float] = value.asInstanceOf[Array[Float]]
+  override def floats: Array[Float] = value.asInstanceOf[ArrayBuffer[Float]].toArray
 
   override def longOpt: Option[Long] = Option(long)
 
-  override def longs: Array[Long] = value.asInstanceOf[Array[Long]]
+  override def longs: Array[Long] = value.asInstanceOf[ArrayBuffer[Long]].toArray
 
   override def boolOpt: Option[Boolean] = Option(bool)
 
-  override def bools: Array[Boolean] = value.asInstanceOf[Array[Boolean]]
+  override def bools: Array[Boolean] = value.asInstanceOf[ArrayBuffer[Boolean]].toArray
 
   override def shortOpt: Option[Short] = Option(short)
 
-  override def shorts: Array[Short] = value.asInstanceOf[Array[Short]]
+  override def shorts: Array[Short] = value.asInstanceOf[ArrayBuffer[Short]].toArray
 
   override def inetAddressOpt: Option[InetAddress] = Option(inetAddress)
 
