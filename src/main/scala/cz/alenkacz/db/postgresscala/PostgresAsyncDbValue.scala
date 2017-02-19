@@ -40,7 +40,7 @@ class PostgresAsyncDbValue(value: Any) extends DbValue {
     Time.valueOf(LocalTime.of(yodaTime.getHourOfDay, yodaTime.getMinuteOfHour, yodaTime.getSecondOfMinute))
   }
 
-  override def bytes: Seq[Byte] = value.asInstanceOf[Array[Byte]].toList
+  override def bytes: Seq[Byte] = value.asInstanceOf[Array[Byte]].toSeq
 
   override def any: Any = value
 
