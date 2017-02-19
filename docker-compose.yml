@@ -1,0 +1,7 @@
+# defines environment used in tests
+version: '2'
+services:
+  db:
+    image: postgres:9.5
+    ports:
+      - "5432"
