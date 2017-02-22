@@ -1,6 +1,6 @@
 # postgres-scala
 
-[![Build Status](https://travis-ci.org/alenkacz/postgres-scala.svg)](https://travis-ci.org/alenkacz/postgres-scala) [ ![Download](https://api.bintray.com/packages/alenkacz/maven/postgres-scala/images/download.svg) ](https://bintray.com/alenkacz/maven/postgres-scala/_latestVersion)
+[![Build Status](https://travis-ci.org/alenkacz/postgres-scala.svg)](https://travis-ci.org/alenkacz/postgres-scala) [ ![Download](https://api.bintray.com/packages/alenkacz/maven/postgres-scala_2.12/images/download.svg) ](https://bintray.com/alenkacz/maven/postgres-scala_2.12/_latestVersion)
 
 Asynchronous postgres client for Scala 2.12. It does not reimplement the wheel because currently it uses [postgresql-async](https://github.com/mauricio/postgresql-async) under the hood. So it is just a nicer API for this library.
 
