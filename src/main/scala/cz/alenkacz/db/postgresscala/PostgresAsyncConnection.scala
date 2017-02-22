@@ -21,5 +21,5 @@ class PostgresAsyncConnection(underlyingConnection: com.github.mauricio.async.db
     case None => Seq.empty
   })
 
-  override def execute[T](query: String): Future[Unit] = underlyingConnection.sendQuery(query).map(_ => ())
+  override def execute[T](query: String, values: Seq[Any] = Seq.empty): Future[Unit] = underlyingConnection.sendPreparedStatement(query, values).map(_ => ())
 }
