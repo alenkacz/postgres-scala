@@ -32,7 +32,7 @@ class PostgresAsyncDbValue(value: Any) extends DbValue {
   override def instant: Instant = value match {
     case d: DateTime => Instant.ofEpochMilli(d.getMillis)
     case d: LocalDateTime => Instant.ofEpochMilli(value.asInstanceOf[LocalDateTime].toDateTime(DateTimeZone.UTC).getMillis)
-    case _ => throw new IllegalArgumentException("Unsupported datetime type - expecting DateTime or LocalDatetime from joda library")
+    case d => throw new IllegalArgumentException(s"Unsupported datetime type - expecting DateTime or LocalDatetime from joda library, actual ${d.getClass.getName}")
   }
 
   override def time: Time = {
