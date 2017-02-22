@@ -23,6 +23,7 @@ object Example {
     sql"SELECT id FROM table WHERE a IN ($testListValue)".queryValue[Int]
     val testValue = 1
     sql"SELECT * FROM table WHERE b=$testValue".query(row => DomainObject(row("a").string, row("b").int))
+    sql"SELECT * FROM table".execute()
   }
 }
 
