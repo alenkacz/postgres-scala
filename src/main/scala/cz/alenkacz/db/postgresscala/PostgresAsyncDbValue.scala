@@ -19,7 +19,7 @@ class PostgresAsyncDbValue(value: Any) extends DbValue {
 
   override def int: Int = throwOnNull(value).asInstanceOf[Int]
 
-  override def bigInt: Long = throwOnNull(value).asInstanceOf[Long]
+  override def bigInt: BigInt = BigInt(throwOnNull(value).asInstanceOf[Long])
 
   override def double: Double = throwOnNull(value).asInstanceOf[Double]
 
@@ -59,9 +59,9 @@ class PostgresAsyncDbValue(value: Any) extends DbValue {
 
   override def ints: Seq[Int] = value.asInstanceOf[ArrayBuffer[Int]].toList
 
-  override def bigIntOpt: Option[Long] = Option(value).map(_ => bigInt)
+  override def bigIntOpt: Option[BigInt] = Option(value).map(_ => bigInt)
 
-  override def bigInts: Seq[Long] = value.asInstanceOf[ArrayBuffer[Long]].toList
+  override def bigInts: Seq[BigInt] = value.asInstanceOf[ArrayBuffer[Long]].map(BigInt(_)).toList
 
   override def doubleOpt: Option[Double] = Option(value).map(_ => double)
 
