@@ -86,6 +86,72 @@ class PostgresqlAsyncIntegrationTest extends AsyncFlatSpec with Matchers with Te
     })
   }
 
+  it should "return instantOpt when instant value is missing" in {
+    sql"SELECT ts FROM abc WHERE ts IS NULL LIMIT 1".query(r => r(0).instantOpt).flatMap(actual => {
+      actual.head should be(None)
+    })
+  }
+
+  it should "return stringOpt when value is missing" in {
+    sql"SELECT s FROM abc WHERE s IS NULL LIMIT 1".query(r => r(0).stringOpt).flatMap(actual => {
+      actual.head should be(None)
+    })
+  }
+
+  it should "return intOpt when value is missing" in {
+    sql"SELECT i FROM abc WHERE i IS NULL LIMIT 1".query(r => r(0).intOpt).flatMap(actual => {
+      actual.head should be(None)
+    })
+  }
+
+  it should "return bigIntOpt when value is missing" in {
+    sql"SELECT bi FROM abc WHERE bi IS NULL LIMIT 1".query(r => r(0).bigIntOpt).flatMap(actual => {
+      actual.head should be(None)
+    })
+  }
+
+  it should "return doubleOpt when value is missing" in {
+    sql"SELECT d FROM abc WHERE d IS NULL LIMIT 1".query(r => r(0).doubleOpt).flatMap(actual => {
+      actual.head should be(None)
+    })
+  }
+
+  it should "return floatOpt when value is missing" in {
+    sql"SELECT f FROM abc WHERE f IS NULL LIMIT 1".query(r => r(0).floatOpt).flatMap(actual => {
+      actual.head should be(None)
+    })
+  }
+
+  it should "return boolOpt when value is missing" in {
+    sql"SELECT b FROM abc WHERE b IS NULL LIMIT 1".query(r => r(0).boolOpt).flatMap(actual => {
+      actual.head should be(None)
+    })
+  }
+
+  it should "return shortOpt when value is missing" in {
+    sql"SELECT sh FROM abc WHERE sh IS NULL LIMIT 1".query(r => r(0).shortOpt).flatMap(actual => {
+      actual.head should be(None)
+    })
+  }
+
+  it should "return inetaddressOpt when value is missing" in {
+    sql"SELECT ina FROM abc WHERE ina IS NULL LIMIT 1".query(r => r(0).inetAddressOpt).flatMap(actual => {
+      actual.head should be(None)
+    })
+  }
+
+  it should "return uuidOpt when value is missing" in {
+    sql"SELECT u FROM abc WHERE u IS NULL LIMIT 1".query(r => r(0).uuidOpt).flatMap(actual => {
+      actual.head should be(None)
+    })
+  }
+
+  it should "return timeOpt when value is missing" in {
+    sql"SELECT timeOnly FROM abc WHERE timeOnly IS NULL LIMIT 1".query(r => r(0).timeOpt).flatMap(actual => {
+      actual.head should be(None)
+    })
+  }
+
   def createTestTable() = {
     Await.result(connection.execute("""CREATE TABLE IF NOT EXISTS abc (
            id serial PRIMARY KEY,

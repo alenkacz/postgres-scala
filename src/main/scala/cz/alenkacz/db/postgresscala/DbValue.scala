@@ -12,9 +12,9 @@ trait DbValue {
   def int: Int
   def intOpt: Option[Int]
   def ints: Seq[Int]
-  def bigInt: Long
-  def bigIntOpt: Option[Long]
-  def bigInts: Seq[Long]
+  def bigInt: BigInt
+  def bigIntOpt: Option[BigInt]
+  def bigInts: Seq[BigInt]
   def double: Double
   def doubleOpt: Option[Double]
   def doubles: Seq[Double]
