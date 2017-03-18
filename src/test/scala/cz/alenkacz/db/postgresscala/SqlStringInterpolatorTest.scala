@@ -20,4 +20,11 @@ class SqlStringInterpolatorTest extends FlatSpec with Matchers  {
 
     actual should be(new SqlQuery("SELECT * FROM table WHERE a IN (?, ?)", Seq("a", "b")))
   }
+
+  it should "interpolate also queries with empty list as parameter" in {
+    val value = List.empty
+    val actual = sql"INSERT INTO table (a) VALUES ($value)"
+
+    actual should be(new SqlQuery("INSERT INTO table (a) VALUES (?)", Seq("{}")))
+  }
 }

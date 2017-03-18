@@ -7,11 +7,13 @@ package object postgresscala {
 
     private def parameterPlaceholder(parameter: Any) = parameter match {
       case EmptyParameterPlaceholder => ""
+      case Nil => "?"
       case t: Traversable[_] => t.map(t => "?").mkString(", ")
       case _ => "?"
     }
 
     def paramsList(params: Seq[Any]): Seq[Any] = params.flatMap {
+      case Nil => Seq("{}")
       case t: Traversable[_] => t
       case p => Seq(p)
     }
