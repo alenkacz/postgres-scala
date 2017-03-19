@@ -94,4 +94,6 @@ class PostgresAsyncDbValue(value: Any) extends DbValue {
   override def inetAddresses: Seq[InetAddress] = value.asInstanceOf[ArrayBuffer[InetAddress]].toList
 
   override def uuids: Seq[UUID] = value.asInstanceOf[ArrayBuffer[UUID]].toList
+
+  override def bytesOpt: Option[Seq[Byte]] = Option(value).map(_ => bytes)
 }

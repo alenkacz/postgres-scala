@@ -41,5 +41,6 @@ trait DbValue {
   def time: Time
   def timeOpt: Option[Time]
   def bytes: Seq[Byte]
+  def bytesOpt: Option[Seq[Byte]]
   def any: Any
 }
