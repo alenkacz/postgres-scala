@@ -1,6 +1,4 @@
 # postgres-scala
-
-This is still work in progress - not production ready!
 ---------------------
 
 [![Build Status](https://travis-ci.org/alenkacz/postgres-scala.svg)](https://travis-ci.org/alenkacz/postgres-scala) [ ![Download](https://api.bintray.com/packages/alenkacz/maven/postgres-scala_2.12/images/download.svg) ](https://bintray.com/alenkacz/maven/postgres-scala_2.12/_latestVersion)
@@ -15,7 +13,19 @@ There are several very good postgresql clients for Scala but in my opinion there
 
 Sometimes your just want to write plain SQL queries (e.g. for performance reasons) and map them to domain objects by hand. This library enable that with a nice scala API.
 
-## Example usage
+## Getting started
+Current version of the library can be found on [bintray](https://bintray.com/alenkacz/maven/postgres-scala_2.12/_latestVersion)
+
+SBT
+```
+	"cz.alenkacz.db" %% "postgres-scala_2.12" % "<VERSION_HERE>"
+```
+Gradle
+```
+	compile 'cz.alenkacz.db:postgres-scala_2.12:<VERSION_HERE>'
+```
+
+### Example usage
 	package cz.alenkacz.db.postgresscala
 
 	import com.typesafe.config.ConfigFactory
