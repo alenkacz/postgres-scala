@@ -17,7 +17,7 @@ import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 class PostgresqlAsyncIntegrationTest extends AsyncFlatSpec with Matchers with TestPostgresConnection {
-  createTestTable()
+  createTestTables()
 
 
   "Postgres scala" should "return result for basic string query" in {
@@ -152,7 +152,13 @@ class PostgresqlAsyncIntegrationTest extends AsyncFlatSpec with Matchers with Te
     })
   }
 
-  def createTestTable() = {
+  it should "throw exception when duplicate key happens" in {
+    recoverToSucceededIf[DuplicateKeyException] {
+      sql"INSERT INTO withuniquekey(uniq) VALUES(1)".execute().flatMap(_ => sql"INSERT INTO withuniquekey(uniq) VALUES(1)".execute())
+    }
+  }
+
+  def createTestTables() = {
     Await.result(connection.execute("""CREATE TABLE IF NOT EXISTS abc (
            id serial PRIMARY KEY,
            s text NULL,
@@ -176,6 +182,10 @@ class PostgresqlAsyncIntegrationTest extends AsyncFlatSpec with Matchers with Te
            bytearray bytea NULL,
            ts timestamp NULL,
            timeOnly time NULL
+         );"""), Duration(3, TimeUnit.SECONDS))
+
+    Await.result(connection.execute("""CREATE TABLE IF NOT EXISTS withuniquekey (
+           uniq int NOT NULL UNIQUE
          );"""), Duration(3, TimeUnit.SECONDS))
   }
 }
