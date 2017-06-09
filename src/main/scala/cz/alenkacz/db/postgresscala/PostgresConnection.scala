@@ -15,10 +15,10 @@ object PostgresConnection {
 
     val parsedConfig = ConfigParser.parse(finalConfig)
     parsedConfig match {
-      case PostgresConfiguration(conf, None) =>
-        new PostgreSQLConnection(conf).connect.map(new PostgresAsyncConnection(_))
-      case PostgresConfiguration(conf, Some(poolConfig)) =>
-        new ConnectionPool[PostgreSQLConnection](new PostgreSQLConnectionFactory(conf), poolConfig).connect.map(new PostgresAsyncConnection(_))
+      case PostgresConfiguration(conf, disconnectTimeout, None) =>
+        new PostgreSQLConnection(conf).connect.map(new PostgresAsyncConnection(_, disconnectTimeout))
+      case PostgresConfiguration(conf, disconnectTimeout, Some(poolConfig)) =>
+        new ConnectionPool[PostgreSQLConnection](new PostgreSQLConnectionFactory(conf), poolConfig).connect.map(new PostgresAsyncConnection(_, disconnectTimeout))
     }
   }
 }

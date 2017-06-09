@@ -3,9 +3,10 @@ import com.github.mauricio.async.db.QueryResult
 import com.github.mauricio.async.db.postgresql.exceptions.GenericDatabaseException
 import com.github.mauricio.async.db.postgresql.messages.backend.{ErrorMessage, InformationMessage}
 
-import scala.concurrent.{ExecutionContext, Future}
+import scala.concurrent.duration.Duration
+import scala.concurrent.{Await, ExecutionContext, Future}
 
-class PostgresAsyncConnection(underlyingConnection: com.github.mauricio.async.db.Connection)(implicit val executionContext: ExecutionContext) extends Connection {
+class PostgresAsyncConnection(underlyingConnection: com.github.mauricio.async.db.Connection, disconnectTimeout: Duration)(implicit val executionContext: ExecutionContext) extends Connection {
   override def query[T](query: String, deserializer: (Row) => T): Future[Seq[T]] = sendQuery(query).map(qr => qr.rows match {
     case Some(resultSet) => resultSet.map(new PostgresAsyncRow(_)).map(deserializer)
     case None => Seq.empty
@@ -37,5 +38,5 @@ class PostgresAsyncConnection(underlyingConnection: com.github.mauricio.async.db
       throw new DuplicateKeyException(e.errorMessage.fields.getOrElse(InformationMessage.Message, ""), e)
   }
 
-  override def close(): Unit = underlyingConnection.disconnect
+  override def close(): Unit = Await.result(underlyingConnection.disconnect, disconnectTimeout)
 }

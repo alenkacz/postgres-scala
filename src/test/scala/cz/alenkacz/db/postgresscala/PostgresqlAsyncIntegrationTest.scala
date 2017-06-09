@@ -2,18 +2,16 @@ package cz.alenkacz.db.postgresscala
 
 import java.net.InetAddress
 import java.sql.Time
-import java.text.SimpleDateFormat
 import java.time.Instant
 import java.util.UUID
 import java.util.concurrent.TimeUnit
 
-import org.scalatest.{AsyncFlatSpec, BeforeAndAfterAll, FlatSpec, Matchers}
+import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
+import org.scalatest.{AsyncFlatSpec, Matchers}
 
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
-import cz.alenkacz.db.postgresscala._
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 class PostgresqlAsyncIntegrationTest extends AsyncFlatSpec with Matchers with TestPostgresConnection {
