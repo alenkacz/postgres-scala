@@ -2,7 +2,7 @@ package cz.alenkacz.db.postgresscala
 
 import scala.concurrent.Future
 
-trait Connection {
+trait Connection extends AutoCloseable {
     def query[T](query: String, deserializer: Row => T): Future[Seq[T]]
     def queryValue[T](query: String): Future[Option[T]]
     def execute[T](query: String, values: Seq[Any] = Seq.empty): Future[Unit]

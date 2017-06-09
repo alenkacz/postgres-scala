@@ -36,4 +36,6 @@ class PostgresAsyncConnection(underlyingConnection: com.github.mauricio.async.db
     case e: GenericDatabaseException if isDuplicateKeyException(e.errorMessage) =>
       throw new DuplicateKeyException(e.errorMessage.fields.getOrElse(InformationMessage.Message, ""), e)
   }
+
+  override def close(): Unit = underlyingConnection.disconnect
 }
