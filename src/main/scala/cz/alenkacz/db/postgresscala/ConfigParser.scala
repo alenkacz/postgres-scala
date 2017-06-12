@@ -19,11 +19,11 @@ object ConfigParser {
   private final val PoolMaxQueueSize = "maxQueueSize"
   private final val PoolValidationInterval = "validationInterval"
 
-  private val defaultConfiguration = URLParser.DEFAULT
-  private val defaultConfig = ConfigFactory.defaultReference().getConfig("postgres-connection-defaults")
+  private val mauricioDefaultValues = URLParser.DEFAULT
+  private val fallbackConfig = ConfigFactory.defaultReference().getConfig("postgres-connection-defaults")
 
   def parse(config: Config): PostgresConfiguration = {
-    PostgresConfiguration(getConfiguration(config), config.withFallback(defaultConfig).getDuration(DisconnectTimeout), getPoolConfiguration(config))
+    PostgresConfiguration(getConfiguration(config), config.withFallback(fallbackConfig).getDuration(DisconnectTimeout), getPoolConfiguration(config))
   }
 
   implicit def asFiniteDuration(d: java.time.Duration): Duration =
@@ -43,10 +43,10 @@ object ConfigParser {
 
   private def getConfiguration(config: Config): Configuration = {
     val connectionStringConfig = connectionString(config)
-    val maxMessageSizeConfig = if (config.hasPath(MaxMessageSize)) config.getInt(MaxMessageSize) else defaultConfiguration.maximumMessageSize
-    val connectTimeoutConfig: Duration = if (config.hasPath(ConnectTimeout)) config.getDuration(ConnectTimeout) else defaultConfiguration.connectTimeout
-    val testTimeoutConfig: Duration = if (config.hasPath(TestTimeout)) config.getDuration(TestTimeout) else defaultConfiguration.testTimeout
-    val queryTimeoutConfig: Option[Duration] = if (config.hasPath(QueryTimeout)) Some(config.getDuration(QueryTimeout)) else defaultConfiguration.queryTimeout
+    val maxMessageSizeConfig = if (config.hasPath(MaxMessageSize)) config.getInt(MaxMessageSize) else mauricioDefaultValues.maximumMessageSize
+    val connectTimeoutConfig: Duration = if (config.hasPath(ConnectTimeout)) config.getDuration(ConnectTimeout) else mauricioDefaultValues.connectTimeout
+    val testTimeoutConfig: Duration = if (config.hasPath(TestTimeout)) config.getDuration(TestTimeout) else mauricioDefaultValues.testTimeout
+    val queryTimeoutConfig: Option[Duration] = if (config.hasPath(QueryTimeout)) Some(config.getDuration(QueryTimeout)) else mauricioDefaultValues.queryTimeout
 
     connectionStringConfig.copy(maximumMessageSize = maxMessageSizeConfig, connectTimeout = connectTimeoutConfig, testTimeout = testTimeoutConfig, queryTimeout = queryTimeoutConfig)
   }
