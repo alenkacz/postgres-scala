@@ -55,6 +55,7 @@ Since [typesafe config](https://github.com/typesafehub/config) is de facto stand
     
       maxMessageSize = 16777216 // optional
       connectTimeout = 5 seconds // optional
+      disconnectTimeout = 5 seconds // optional
       testTimeout = 5 seconds // optional
       queryTimeout = 6 seconds // optional
     

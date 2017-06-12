@@ -27,4 +27,3 @@ build/
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
 .gradletasknamecache
-gradle/wrapper/gradle-wrapper.jar
