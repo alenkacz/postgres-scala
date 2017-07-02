@@ -2,7 +2,7 @@ language: generic
 
 sudo: required
 env:
-  - DOCKER_VERSION=1.13.0
+  - DOCKER_VERSION=1.13.1
 
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
