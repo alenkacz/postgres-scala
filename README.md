@@ -18,11 +18,11 @@ Current version of the library can be found on [bintray](https://bintray.com/ale
 
 SBT
 ```groovy
-	"cz.alenkacz.db" %% "postgres-scala_2.12" % "<VERSION_HERE>"
+"cz.alenkacz.db" %% "postgres-scala_2.12" % "<VERSION_HERE>"
 ```
 Gradle
 ```groovy
-	compile 'cz.alenkacz.db:postgres-scala_2.12:<VERSION_HERE>'
+compile 'cz.alenkacz.db:postgres-scala_2.12:<VERSION_HERE>'
 ```
 
 ### Example usage
