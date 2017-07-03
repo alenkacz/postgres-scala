@@ -42,6 +42,12 @@ Gradle
 			sql"SELECT id FROM table WHERE a IN ($testListValue)".queryValue[Int]()
 			val testValue = 1
 			sql"SELECT * FROM table WHERE b=$testValue".query(row => DomainObject(row("a").string(), row("b").int()))
+			connection.inTransaction { c =>
+			  for {
+			     val1 <- c.query("SELECT COUNT(*) FROM table1", r => r(0).int)
+			     val2 <- c.query("SELECT COUNT(*) FROM table2", r => r(0).int)
+			  } yield val1 + val2
+			}
 		}
 	}
 
