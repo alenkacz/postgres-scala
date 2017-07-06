@@ -39,4 +39,6 @@ class PostgresAsyncConnection(underlyingConnection: com.github.mauricio.async.db
   }
 
   override def close(): Unit = Await.result(underlyingConnection.disconnect, disconnectTimeout)
+
+  override def count(query: String): Future[Long] = queryValue[Long](query).map(_.getOrElse(0L))
 }

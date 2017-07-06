@@ -159,9 +159,9 @@ class PostgresqlAsyncIntegrationTest extends AsyncFlatSpec with Matchers with Te
   it should "run two queries in transaction" in {
     connection.inTransaction(c => {
       for {
-             val1 <- sql"SELECT COUNT(*) FROM abc".queryValue[Long]()(c)
-             val2 <- sql"SELECT COUNT(*) FROM withuniquekey".queryValue[Long]()(c)
-        } yield val1.getOrElse(0L) + val2.getOrElse(0L)
+             val1 <- sql"SELECT COUNT(*) FROM abc".count()(c)
+             val2 <- sql"SELECT COUNT(*) FROM withuniquekey".count()(c)
+        } yield val1 + val2
     }).map(_ => assert(true)) // should not throw exception
   }
 

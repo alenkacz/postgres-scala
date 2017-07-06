@@ -45,8 +45,8 @@ object Example {
 		sql"SELECT * FROM table WHERE b=$testValue".query(row => DomainObject(row("a").string(), row("b").int()))
 		connection.inTransaction(c => {
           for {
-                 val1 <- sql"SELECT COUNT(*) FROM abc".queryValue[Long]()(c)
-                 val2 <- sql"SELECT COUNT(*) FROM withuniquekey".queryValue[Long]()(c)
+                 val1 <- sql"SELECT COUNT(*) FROM abc".count()(c)
+                 val2 <- sql"SELECT COUNT(*) FROM withuniquekey".count()(c)
             } yield val1.getOrElse(0L) + val2.getOrElse(0L)
         })
 	}
