@@ -78,8 +78,8 @@ database {
 
 To create the connection in the code, all you have to do is call
 ```scala
-	import cz.alenkacz.db.postgresscala
-	import import com.typesafe.config.ConfigFactory
-	
-	val connection = PostgresConnection.fromConfig(ConfigFactory.load().getConfig("database"))
+import cz.alenkacz.db.postgresscala
+import import com.typesafe.config.ConfigFactory
+
+val connection = PostgresConnection.fromConfig(ConfigFactory.load().getConfig("database"))
 ```
