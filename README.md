@@ -17,10 +17,18 @@ Sometimes your just want to write plain SQL queries (e.g. for performance reason
 Current version of the library can be found on [bintray](https://bintray.com/alenkacz/maven/postgres-scala_2.12/_latestVersion)
 
 SBT
-```groovy
+```scala
+resolvers += Resolver.jcenterRepo
+```
+```scala
 "cz.alenkacz.db" %% "postgres-scala_2.12" % "<VERSION_HERE>"
 ```
 Gradle
+```groovy
+repositories {  
+   jcenter()  
+}
+```
 ```groovy
 compile 'cz.alenkacz.db:postgres-scala_2.12:<VERSION_HERE>'
 ```
