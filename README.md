@@ -67,7 +67,7 @@ case class DomainObject(testString: String, testInt: Int)
 Since [typesafe config](https://github.com/typesafehub/config) is de facto standard configuration library for scala, there is an easy way how to create postgres client directly from config. To do that, you need to have a config similar to this one:
 ``` 
 database {
-  connectionString = "jdbc:postgresql://localhost:5432/test_db"
+  connectionString = "jdbc:postgresql://localhost:5432/test_db?user=your_username&password=your_password"
 
   maxMessageSize = 16777216 // optional
   connectTimeout = 5 seconds // optional
