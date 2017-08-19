@@ -6,7 +6,7 @@ import org.scalatest.{FlatSpec, Matchers}
 import cz.alenkacz.db.postgresscala._
 
 @RunWith(classOf[JUnitRunner])
-class SqlStringInterpolatorTest extends FlatSpec with Matchers  {
+class SqlStringInterpolatorTest extends FlatSpec with Matchers {
   "Interpolated sql string" should "be correcly parsed" in {
     val a = "value"
     val actual = sql"SELECT * FROM table WHERE a=$value"
@@ -18,13 +18,15 @@ class SqlStringInterpolatorTest extends FlatSpec with Matchers  {
     val value = List("a", "b")
     val actual = sql"SELECT * FROM table WHERE a IN ($value)"
 
-    actual should be(new SqlQuery("SELECT * FROM table WHERE a IN (?, ?)", Seq("a", "b")))
+    actual should be(
+      new SqlQuery("SELECT * FROM table WHERE a IN (?, ?)", Seq("a", "b")))
   }
 
   it should "interpolate also queries with empty list as parameter" in {
     val value = List.empty
     val actual = sql"INSERT INTO table (a) VALUES ($value)"
 
-    actual should be(new SqlQuery("INSERT INTO table (a) VALUES (?)", Seq("{}")))
+    actual should be(
+      new SqlQuery("INSERT INTO table (a) VALUES (?)", Seq("{}")))
   }
 }
