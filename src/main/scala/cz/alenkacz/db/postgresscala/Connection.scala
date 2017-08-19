@@ -16,5 +16,5 @@ trait Connection extends AutoCloseable {
   def sendPreparedStatement[T](query: String,
                                deserializer: Row => T): Future[Seq[T]]
 
-    def inTransaction[A](f : Connection => Future[A]): Future[A]
+  def inTransaction[A](f: Connection => Future[A]): Future[A]
 }
